@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Tarea UD 3. Apartado 2 - frames</title>
     <style>
-        iframe {
+        iframe
+        {
             padding: 10px;
             border: 5px solid pink;
             background-color: white;
@@ -13,7 +14,8 @@
             height: 350px;
         }
 
-        #iframes {
+        #iframes
+        {
             display: -webkit-box;
             display: -moz-box;
             display: -ms-flexbox;
@@ -24,7 +26,8 @@
             flex-wrap: wrap;
         }
 
-        #marco {
+        #marco
+        {
             background-color: pink;
             padding: 10px;
             margin: 10px;
@@ -33,20 +36,29 @@
     </style>
 
     <script type="text/javascript">
-        window.onload = function () {
+        window.onload = function ()
+        {
             var urls = ["http://getbootstrap.com", "http://vishub.org"];
 
-            function mostrar(urls) {
+            function mostrar(urls)
+            {
                 var i, iframes = "";
-                for (i = 0; i < urls.length; ++i) {
+                for (i = 0; i < urls.length; ++i)
+                {
                     iframes += "<iframe src='" + urls[i] + "'></iframe>";
                 }
                 document.getElementById('iframes').innerHTML = iframes;
             };
 
-            document.getElementById('boton').onclick = function () {
+            document.getElementById('boton').onclick = function ()
+            {
                 urls.push(document.getElementById('nuevo').value);
                 mostrar(urls);
+            };
+
+            document.getElementById('borrar').onclick = function ()
+            {
+                urls.splice();
             };
 
             mostrar(urls);
@@ -58,7 +70,11 @@
     <h3>Ejemplos de diseño responsivo</h3>
 
     <input type="text" id="nuevo" size=50 placeholder="https://www.windy.com/" value="" />
-    <button type="button" id="boton"> Añadir </button>
+    <button type="button" id="boton"> Añadir </button><br>
+
+    <input type="number" id="index" min="1" max="2">
+    <button type="button" id="borrar">Borrar</button>
+
     <p></p>
     <div id='marco'>
         <div id="iframes">
