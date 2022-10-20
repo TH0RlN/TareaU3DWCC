@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TareaUd3 Apartado 1</title>
+    <style>
+        /* Borde para las celdas de la tabla */
+        td
+        {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+
+        /* Color ligeramente más claro para los atributos no imprimibles */
+        td.noprint
+        {
+            color: rgb(179, 179, 179);
+        }
+
+        /* Borde y fuente más gruesos para el título */
+        th
+        {
+            font-weight: 900;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <script>
+
+        var objName = prompt("Introduzca el nombre del objeto que busca: ");
+        var obj;
+        var isFound = false;
+
+        /* En este bucle se recorren los distintos atributos de 'window' para ver si alguno coincide
+        ** con el que introdujo el usuario
+        */
+        for (const key in window)
+        {
+            if (typeof(window[key]) === 'object' && key === objName)
+            {
+                obj = window[key];
+                isFound = true;
+            }
+        }
+
+        /* Si fue encontrado el objeto, se crea una tabla en la que en la columna de la izquierda
+        ** aparecerá el nombre del atributo y en la de la izquierda, aparecerá el valor del atributo
+        ** si se puede imprimir, en caso contrario aparecerá 'No imprimible'; si no existiese el
+        ** objeto, se lanzará una alerta.
+        */
+        if (isFound)
+        {
+            var table = document.createElement("table");
+            table.innerHTML += "<tr><th>Propiedad</th><th>Valor</th></tr>";
+            for (const key in obj)
+            {
+                if (typeof(obj[key]) == 'function' || typeof(obj[key]) == 'object')
+                    table.innerHTML += ("<tr><td>" + key + "</td><td class='noprint'>No imprimible</tr>");
+                else
+                    table.innerHTML += ("<tr><td>" + key + "</td><td>" + obj[key] + "</tr>");
+            }
+
+            document.getElementsByTagName("body")[0].appendChild(table);
+        }
+        else
+            alert("No existe objeto con ese nombre");
+    </script>
+</body>
+</html>
