@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea UD 3. Apartado 3</title>
+    <style>
+        div
+        {
+            float: left;
+        }
+
+        button, div#izquierda, div#derecha
+        {
+            float: inline-end;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button type="button" id="pais">El País</button>
+        <button type="button" id="ok">OkDiario</button>
+        <button type="button" id="marea">La Marea</button>
+        <div id="izquierda"></div>
+    </div>
+    <div>
+        <button type="button" id="abc">ABC</button>
+        <button type="button" id="espanol">El Español</button>
+        <button type="button" id="mundo">El Mundo</button>
+        <div id="derecha"></div>
+    </div>
+    <script>
+        function marco(url, lado)
+        {
+            document.getElementById(lado).innerHTML = "<iframe src='" + url + "'></iframe>";
+        }
+
+        document.getElementById('pais').onclick = function () {marco("https://elpais.com", "izquierda");};
+        document.getElementById('ok').onclick = function () {marco("https://okdiario.com", "izquierda");};
+        document.getElementById('marea').onclick = function () {marco("https://lamarea.com", "izquierda");};
+        document.getElementById('abc').onclick = function () {marco("https://abc.es", "derecha");};
+        document.getElementById('espanol').onclick = function () {marco("https://elespanol.com", "derecha");};
+        document.getElementById('mundo').onclick = function () {marco("https://elmundo.es", "derecha");};
+    </script>
+</body>
+</html>
