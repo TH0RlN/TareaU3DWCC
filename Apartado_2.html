@@ -38,28 +38,58 @@
     <script type="text/javascript">
         window.onload = function ()
         {
-            var urls = ["http://getbootstrap.com", "http://vishub.org"];
 
+            /*
+            ** Antes de nada se comprueba que si existe un array de urls almacenado en localStorage, en caso de que sí, se toma 
+            ** este para elegir las urls a mostrar,; en caso contrario, se utilza un array predefinido
+            */
+            var urls;
+            if (localStorage.getItem("localUrl"))
+                urls = localStorage.getItem("localUrl").split(',');
+            else
+                urls = ["http://getbootstrap.com", "http://vishub.org"];
+
+            /*
+            ** Se toma el array urls y se añade una division por cada una, en esta division aparecen un título numerado con
+            ** la url correspondiente y un iframe con la página de la url; además se almacena el array de urls en localStorage
+            */
             function mostrar(urls)
             {
                 var i, iframes = "";
                 for (i = 0; i < urls.length; ++i)
                 {
-                    iframes += "<iframe src='" + urls[i] + "'></iframe>";
+                    iframes += "<div><h3>" + (i + 1) + ".-" + urls[i] + "</h3><iframe src='" + urls[i] + "'></iframe></div>";
                 }
                 document.getElementById('iframes').innerHTML = iframes;
+                localStorage.setItem("localUrl", urls);
             };
 
+            /*
+            ** Cuando se pulsa el boton 'boton' se toma el valor de la entrada 'nuevo', es añadido al array de urls y se vuelven
+            ** a mostrar todas las urls.
+            */
             document.getElementById('boton').onclick = function ()
             {
                 urls.push(document.getElementById('nuevo').value);
                 mostrar(urls);
             };
 
+            /*
+            ** Cuando el boton 'borrar' es pulsado se toma el valor de la entrada 'index', es eliminado del array de urls y se
+            ** vuelven a mostrar las urls restantes.
+            */
             document.getElementById('borrar').onclick = function ()
             {
-                urls.splice();
+                var index = document.getElementById('index').value - 1;
+                if (index <= urls.length && index >= 0)
+                    urls.splice(index, 1);
+                mostrar(urls);
             };
+
+            /*
+            ** Cuando el boton 'clear' es pulsado localStorage es vaciado y la página es recargada.
+            */
+            document.getElementById('clear').onclick = function () {localStorage.clear(); location.reload()};
 
             mostrar(urls);
         };
@@ -72,8 +102,10 @@
     <input type="text" id="nuevo" size=50 placeholder="https://www.windy.com/" value="" />
     <button type="button" id="boton"> Añadir </button><br>
 
-    <input type="number" id="index" min="1" max="2">
+    <input type="number" id="index" min="1">
     <button type="button" id="borrar">Borrar</button>
+
+    <button type="button" id="clear">Borrar localStorage</button>
 
     <p></p>
     <div id='marco'>
