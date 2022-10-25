@@ -9,22 +9,36 @@
         div
         {
             float: left;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
         }
 
-        button, div#izquierda, div#derecha
+        .container
         {
-            float: inline-end;
+            width: 45%;
         }
+
+        #izquierda, #derecha
+        {
+            height: 720px;
+        }
+
+        iframe
+        {
+            height: 100%;
+        }
+
     </style>
 </head>
 <body>
-    <div>
+    <div class="container">
         <button type="button" id="pais">El País</button>
         <button type="button" id="ok">OkDiario</button>
         <button type="button" id="marea">La Marea</button>
         <div id="izquierda"></div>
     </div>
-    <div>
+    <div class="container">
         <button type="button" id="abc">ABC</button>
         <button type="button" id="espanol">El Español</button>
         <button type="button" id="mundo">El Mundo</button>
