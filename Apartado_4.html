@@ -8,7 +8,6 @@
         #map {
             display: block;
             width: 100%;
-            /*height: 97vh;*/
             background: rgba(0, 255, 0, 0.5);
             /* verde si no hay mapa */
         }
@@ -20,9 +19,10 @@
         {
             document.getElementById("map").style.height = Math.floor(window.innerHeight * .98) + "px";
 
-            if (navigator.geolocation) {   //Check if browser supports W3C Geolocation API
-                navigator.geolocation.getCurrentPosition(success, error);
-            } else { alert('Geolocation no soportada.'); }
+            if (navigator.geolocation)
+				navigator.geolocation.getCurrentPosition(success, error);
+			else
+				alert('Geolocation no soportada.');
 
             function error(position) { alert('Fallo en la geolocalización!'); }
 
@@ -43,6 +43,10 @@
             }
         }
 
+		/*
+		**	Esta funcion asociada al evento onresize, permite que el mapa se ajuste al tamaño de la ventana,
+		**	tomando como tamaño el 97% del interior de esta para dejar espacio para los márgenes
+		*/
         window.onresize = function ()
         {
             document.getElementById("map").style.height = Math.floor(window.innerHeight * .97) + "px";
