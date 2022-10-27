@@ -18,10 +18,13 @@
 </body>
 <footer>
 	<script>
+		/*
+		**	Esta funcion elige un numero al azar entre 1 y 6, y asigna al div 'lado' una imagen con el lado correspondiente.
+		**	La función se puede ejecutar tanto pulsando el botón, como pulsando el propio dado una vez aparezca
+		*/
 		function lanzar()
 		{
 			var dado	= Math.floor(Math.random() * 6) + 1;
-			var img		= document.createElement('img');
 
 			document.getElementById('dado').innerHTML = "<img src='https://menudodia.es/clases/imagenes/dado/" + dado + ".png' onclick='lanzar()'>"
 		}
